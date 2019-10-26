@@ -3,18 +3,6 @@
 #include "sort.h"
 
 
-void print(int e) {
-	std::cout << e << " ";
-}
-
-
-bool greater(int first, int second) {
-	return first > second;
-}
-
-void scan(int &e) {
-	std::cin >> e;
-}
 
 int main() {
 	std::vector<int> vector(8);
