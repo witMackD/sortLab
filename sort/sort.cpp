@@ -1,21 +1,33 @@
-﻿// sort.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
-//
-
+﻿
 #include "pch.h"
-#include <iostream>
 
-int main()
-{
-    std::cout << "Hello World!\n"; 
+void sort(std::vector<int>::iterator begin, std::vector<int>::iterator end, bool(*compare)(int, int)) {
+	for (; begin < end; ++begin) {
+		std::vector<int>::iterator  minimum = begin;
+		for (std::vector<int>::iterator iteratorInner = begin; iteratorInner < end; ++iteratorInner) {
+			if (compare(*iteratorInner, *minimum)) {
+				minimum = iteratorInner;
+			}
+		}
+		std::swap(*begin, *minimum);
+	}
 }
 
-// Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
-// Debugowanie programu: F5 lub menu Debugowanie > Rozpocznij debugowanie
+bool lesser(int first, int second) {
+	return first < second;
+}
 
-// Porady dotyczące rozpoczynania pracy:
-//   1. Użyj okna Eksploratora rozwiązań, aby dodać pliki i zarządzać nimi
-//   2. Użyj okna programu Team Explorer, aby nawiązać połączenie z kontrolą źródła
-//   3. Użyj okna Dane wyjściowe, aby sprawdzić dane wyjściowe kompilacji i inne komunikaty
-//   4. Użyj okna Lista błędów, aby zobaczyć błędy
-//   5. Wybierz pozycję Projekt > Dodaj nowy element, aby utworzyć nowe pliki kodu, lub wybierz pozycję Projekt > Dodaj istniejący element, aby dodać istniejące pliku kodu do projektu
-//   6. Aby w przyszłości ponownie otworzyć ten projekt, przejdź do pozycji Plik > Otwórz > Projekt i wybierz plik sln
+bool greater(int first, int second) {
+	return first > second;
+}
+
+int main() {
+	std::vector<int> vector{ 13, -2, 21, 5, -8, 5, 7, -10 };
+	sort(vector.begin(), vector.end());
+	for (int index = 0; index < vector.size(); ++index) {
+		std::cout << vector[index] << " ";
+	}
+
+	
+	std::cout << std::endl;
+}
