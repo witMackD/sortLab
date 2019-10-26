@@ -1,33 +1,26 @@
 ﻿
 #include "pch.h"
+#include "sort.h"
 
-void sort(std::vector<int>::iterator begin, std::vector<int>::iterator end, bool(*compare)(int, int)) {
-	for (; begin < end; ++begin) {
-		std::vector<int>::iterator  minimum = begin;
-		for (std::vector<int>::iterator iteratorInner = begin; iteratorInner < end; ++iteratorInner) {
-			if (compare(*iteratorInner, *minimum)) {
-				minimum = iteratorInner;
-			}
-		}
-		std::swap(*begin, *minimum);
-	}
+
+void print(int e) {
+	std::cout << e << " ";
 }
 
-bool lesser(int first, int second) {
-	return first < second;
-}
 
 bool greater(int first, int second) {
 	return first > second;
 }
 
-int main() {
-	std::vector<int> vector{ 13, -2, 21, 5, -8, 5, 7, -10 };
-	sort(vector.begin(), vector.end());
-	for (int index = 0; index < vector.size(); ++index) {
-		std::cout << vector[index] << " ";
-	}
+void scan(int &e) {
+	std::cin >> e;
+}
 
-	
+int main() {
+	std::vector<int> vector(8);
+	std::for_each(vector.begin(), vector.end(), scan);
+	std::sort(vector.begin(), vector.begin() + 4);
+	std::sort(vector.begin() + 4, vector.begin());
+	std::for_each(vector.begin(), vector.end(), print);
 	std::cout << std::endl;
 }
